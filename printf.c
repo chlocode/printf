@@ -19,30 +19,38 @@ int _printf(const char *format, ...)
 	char *sv;
 
 	va_start(list, format);
-
+	count = 0;
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%' && format[++i] == '%')
+		{
 			putchar('%');
+			count++;
+			i++;
+		}
 		if (format[i] == '%' && format[++i] == 'c')
 		{
 			cv = va_arg(list, int);
 			putchar(cv);
+			count++;
+			i++;
 		}
 		if (format[i] == '%' && format[++i] == 's')
 		{
 			sv = va_arg(list, char*);
 			if (sv != NULL)
 			{
-				for (j = 0; j != '\0'; j++)
+				for (j = 0; sv[j] != '\0'; j++)
+				{
 					putchar(sv[j]);
+					count++;
+				}
 			}
+			i++;
 		}
 		putchar(format[i]);
+		count++;
 	}
 	va_end(list);
-	count = 0;
-	while (format[count])
-		count++;
 	return (count);
 }
