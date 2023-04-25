@@ -1,2 +1,1 @@
-# printf
-This is a custom-made printf function that displays the use of variadic functions and pointer know-how in its construction.
+group project on creating printf function
