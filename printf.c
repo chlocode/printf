@@ -38,7 +38,7 @@ int _printf(const char *format, ...)
 					sv = va_arg(list, char*);
 					if (sv == NULL)
 					{
-						write(STDOUT_FILENO, "(null)", 6);
+						write(STDOUT_FILENO, "null", 4);
 						count += 6;
 					}
 					for (j = 0; sv[j] != '\0'; j++)
