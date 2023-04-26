@@ -39,12 +39,15 @@ int _printf(const char *format, ...)
 					if (sv == NULL)
 					{
 						write(STDOUT_FILENO, "null", 4);
-						count += 4;
+						count += strlen("null");
 					}
-					for (j = 0; sv[j] != '\0'; j++)
+					else
 					{
-						putchar(sv[j]);
-						count++;
+						for (j = 0; sv[j] != '\0'; j++)
+						{
+							putchar(sv[j]);
+							count++;
+						}
 					}
 					break;
 				case '%':
