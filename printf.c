@@ -46,7 +46,10 @@ int _printf(const char *format, ...)
 					if (dv < 0)
 						putchar('-'), dv = -dv;
 					for (k = nd - 1; k >= 0; k--)
-					       dd = dv / (int) pow(10, k) % 10, putchar('0' + dd);
+					{
+						dd = dv / (int) pow(10, k) % 10;
+						putchar('0' + dd);
+					}
 					break;
 				case '%':
 					putchar('%'), count++;
