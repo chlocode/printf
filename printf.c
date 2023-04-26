@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
 /**
  *  _printf - produces output according to a format
@@ -18,7 +19,7 @@ int _printf(const char *format, ...)
 
 	va_start(list, format);
 
-	if (format == NULL || format[0] == '%')
+	if (format == NULL || strcmp(format, "%") == 0)
 		exit(1);
 
 	for (i = 0; format[i] != '\0'; i++)
