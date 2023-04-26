@@ -47,45 +47,6 @@ int _printf(const char *format, ...)
 					putchar('%');
 					count++;
 					break;
-				case 'd':
-				case 'i':
-				{
-					int number = va_arg(list, int);
-					length = 1;
-					sign = 0;
-					/*for negative numbers*/
-					if (number < 0)
-					{
-						sign = 1;
-						write(1, "-", 1);
-						number = -number;
-					}
-					tem_copy = number;
-					while (tem_copy / 10 > 0)
-					{
-						length++;
-						tem_copy /= 10;
-					}
-					if (sign)
-						++length;
-					buffer = malloc(length + 1);
-					if (buffer == NULL)
-					{
-						return (-1);
-					}
-					buf_position = length - 1;
-					while (number / 10 > 0)
-					{
-						buffer[buf_position--] = (number % 10) + '0';
-						number /= 10;
-					}
-					buffer[buf_position] = number % 10 + '0';
-					buffer[length] = '\0';
-					write(STDOUT_FILENO, buffer, length);
-					count += length;
-					free(buffer);
-					break;
-				}
 				default:
 					putchar('%');
 					putchar(format[i]);
