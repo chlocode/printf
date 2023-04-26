@@ -1,29 +1,31 @@
 #include "main.h"
 #include <stdarg.h>
-#include <stddef.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 /**
  *  _printf - produces output according to a format
- *
  *  @format: pointer to a character string
- *
  *  Return: count of characters printed
  */
 
 int _printf(const char *format, ...)
 {
 	va_list list;
-	int i, j, cv, count = 0;
+	int i, j, cv, count = 0; 
 	char *sv;
 
 	va_start(list, format);
+
+	if (format == NULL)
+		exit (1);
+
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
 		{
 			i++;
-
 			switch (format[i])
 			{
 				case 'c':
@@ -33,6 +35,11 @@ int _printf(const char *format, ...)
 					break;
 				case 's':
 					sv = va_arg(list, char*);
+					if (sv == NULL)
+					{
+						write(STDOUT_FILENO, "(null)", 6);
+						count += 6;
+					}
 					for (j = 0; sv[j] != '\0'; j++)
 					{
 						putchar(sv[j]);
