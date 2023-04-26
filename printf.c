@@ -37,20 +37,11 @@ int _printf(const char *format, ...)
 				case 's':
 					sv = va_arg(list, char*);
 					if (sv == NULL)
+						return (count += 4);
+					for (j = 0; sv[j] != '\0'; j++)
 					{
-						putchar('n');
-						putchar('u');
-						putchar('l');
-						putchar('l');
-						count += 4;
-					}
-					else
-					{
-						for (j = 0; sv[j] != '\0'; j++)
-						{
-							putchar(sv[j]);
-							count++;
-						}
+						putchar(sv[j]);
+						count++;
 					}
 					break;
 				case '%':
