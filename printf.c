@@ -16,6 +16,7 @@ int _printf(const char *format, ...)
 	va_list list;
 	int i, j, cv, count = 0;
 	char *sv;
+	char n[4] = {'n', 'u', 'l', 'l'};
 
 	va_start(list, format);
 	if (format == NULL || strcmp(format, "%") == 0)
@@ -32,7 +33,7 @@ int _printf(const char *format, ...)
 				case 's':
 					sv = va_arg(list, char*);
 					if (sv == NULL)
-						fputs("null", stdout), count += 4;
+						_printf("%s", n[4]), count++;
 					for (j = 0; sv[j] != '\0'; j++)
 						putchar(sv[j]), count++;
 					break;
