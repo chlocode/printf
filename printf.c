@@ -18,52 +18,34 @@ int _printf(const char *format, ...)
 	char *sv;
 
 	va_start(list, format);
-
 	if (format == NULL || strcmp(format, "%") == 0)
 		exit(1);
-
 	for (i = 0; format[i] != '\0'; i++)
-	{
 		if (format[i] == '%')
 		{
 			i++;
 			switch (format[i])
 			{
 				case 'c':
-					cv = va_arg(list, int);
-					putchar(cv);
-					count++;
+					cv = va_arg(list, int), putchar(cv), count++;
 					break;
 				case 's':
 					sv = va_arg(list, char*);
 					if (sv == NULL)
-					{
-						fputs("null", stdout);
-						count += 4;
-					}
+						fputs("null", stdout), count += 4;
 					for (j = 0; sv[j] != '\0'; j++)
-					{
-						putchar(sv[j]);
-						count++;
-					}
+						putchar(sv[j]), count++;
 					break;
 				case '%':
-					putchar('%');
-					count++;
+					putchar('%'), count++;
 					break;
 				default:
-					putchar('%');
-					putchar(format[i]);
-					count += 2;
+					putchar('%'), putchar(format[i]), count += 2;
 					break;
 			}
 		}
 		else
-		{
-			putchar(format[i]);
-			count++;
-		}
-	}
+		putchar(format[i]), count++;
 	va_end(list);
 	return (count);
 }
