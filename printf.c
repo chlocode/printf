@@ -14,42 +14,47 @@
 int _printf(const char *format, ...)
 {
 	va_list list;
-	int i, j, count;
-	char cv;
+	int i, j, cv, count = 0;
 	char *sv;
 
 	va_start(list, format);
-	count = 0;
 	for (i = 0; format[i] != '\0'; i++)
 	{
-		if (format[i] == '%' && format[++i] == '%')
+		if (format[i] == '%')
 		{
-			putchar('%');
-			count++;
 			i++;
-		}
-		if (format[i] == '%' && format[++i] == 'c')
-		{
-			cv = va_arg(list, int);
-			putchar(cv);
-			count++;
-			i++;
-		}
-		if (format[i] == '%' && format[++i] == 's')
-		{
-			sv = va_arg(list, char*);
-			if (sv != NULL)
+
+			switch (format[i])
 			{
-				for (j = 0; sv[j] != '\0'; j++)
-				{
-					putchar(sv[j]);
+				case 'c':
+					cv = va_arg(list, int);
+					putchar(cv);
 					count++;
-				}
+					break;
+				case 's':
+					sv = va_arg(list, char*);
+					for (j = 0; sv[j] != '\0'; j++)
+					{
+						putchar(sv[j]);
+						count++;
+					}
+					break;
+				case '%':
+					putchar('%');
+					count++;
+					break;
+				default:
+					putchar('%');
+					putchar(format[i]);
+					count += 2;
+					break;
 			}
-			i++;
 		}
-		putchar(format[i]);
-		count++;
+		else
+		{
+			putchar(format[i]);
+			count++;
+		}
 	}
 	va_end(list);
 	return (count);
