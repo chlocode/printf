@@ -39,7 +39,7 @@ int _printf(const char *format, ...)
 					if (sv == NULL)
 					{
 						write(STDOUT_FILENO, "null", 4);
-						count += 6;
+						count += 4;
 					}
 					for (j = 0; sv[j] != '\0'; j++)
 					{
