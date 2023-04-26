@@ -38,8 +38,11 @@ int _printf(const char *format, ...)
 					sv = va_arg(list, char*);
 					if (sv == NULL)
 					{
-						write(STDOUT_FILENO, "null", 4);
-						count += strlen("null");
+						putchar('n');
+						putchar('u');
+						putchar('l');
+						putchar('l');
+						count += 4;
 					}
 					else
 					{
