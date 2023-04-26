@@ -36,10 +36,7 @@ int _printf(const char *format, ...)
 				case 's':
 					sv = va_arg(list, char*);
 					if (sv == NULL)
-					{
-						write(STDOUT_FILENO, "(null)", 6);
-						count += 6;
-					}
+						sv = "null";
 					for (j = 0; sv[j] != '\0'; j++)
 					{
 						putchar(sv[j]);
