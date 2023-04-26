@@ -37,7 +37,10 @@ int _printf(const char *format, ...)
 				case 's':
 					sv = va_arg(list, char*);
 					if (sv == NULL)
-						return (count += 4);
+					{
+						fputs("null", stdout);
+						count += 4;
+					}
 					for (j = 0; sv[j] != '\0'; j++)
 					{
 						putchar(sv[j]);
