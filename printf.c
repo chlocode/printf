@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <limits.h>
 
 /**
  *  _printf - produces output according to a format
@@ -49,6 +50,12 @@ int _printf(const char *format, ...)
 					{
 						putchar('0');
 						break;
+					}
+					if (dv == INT_MIN)
+					{
+						putchar('2');
+						dv = 147483648;
+						nd--;
 					}
 					nd = 0, temp = dv;
 					while (temp > 0)
