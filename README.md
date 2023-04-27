@@ -7,6 +7,7 @@ This is a collaborative project on creating a custom printf function In C that m
 - %c
 - %d
 - %i
+- %u
 
 ## Project Structure
 
