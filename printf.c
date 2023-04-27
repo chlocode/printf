@@ -38,6 +38,7 @@ int _printf(const char *format, ...)
 					break;
 				case 'd':
 				case 'i':
+				case 'u':
 					dv = va_arg(list, int);
 					if (dv < 0)
 					{
