@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-#include <math.h>
 
 /**
  *  _printf - produces output according to a format
@@ -15,7 +14,7 @@
 int _printf(const char *format, ...)
 {
 	va_list list;
-	int i, j, k, cv, dv, temp, dd, nd, count = 0;
+	int i, j, k, cv, dv, temp, dd, nd, l, m, count = 0;
 	char *sv;
 
 	va_start(list, format);
@@ -40,15 +39,24 @@ int _printf(const char *format, ...)
 				case 'd':
 				case 'i':
 					dv = va_arg(list, int);
-					nd = 0, temp = dv;
-					while (temp != 0)
-						nd++, temp /= 10;
 					if (dv < 0)
 						putchar('-'), dv = -dv;
+					if (dv == 0)
+					{
+						putchar('0');
+						break;
+					}
+					nd = 0, temp = dv;
+					while (temp > 0)
+						temp /= 10, nd++;
 					for (k = nd - 1; k >= 0; k--)
 					{
-						dd = dv / (int) pow(10, k) % 10;
-						putchar('0' + dd);
+						l = 1;
+						for (m = 0; m < k; m++)
+							l *= 10;
+					dd = dv / l % 10;
+					putchar('0' + dd);
+					count++;
 					}
 					break;
 				case '%':
