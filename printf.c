@@ -28,7 +28,7 @@ int _printf(const char *format, ...)
 			switch (format[i])
 			{
 				case 'c':
-					cv = va_arg(list, int), _putchar(cv), count++;
+					cv = va_arg(list, int), putchar(cv), count++;
 					break;
 				case 's':
 					sv = va_arg(list, char*);
