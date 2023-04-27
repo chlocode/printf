@@ -12,9 +12,16 @@ This is a collaborative project on creating a custom printf function In C that m
 
 The project is structured as follows:
 - 'main.h': This contains the function prototype with include guards to prevent multiple definitions of the prototype.
-- printf.c: This contains the implementation of our custom 'printf' function.
-- README.md: This file contains the overview documentation of the repository,explaining the components of the project and its use.
+- 'printf.c': This contains the implementation of our custom 'printf' function.
+- 'README.md': This file contains the overview documentation of the repository,explaining the components of the project and its use.
+
+## Usage
+
+To use this 'printf' function, simply include the 'main.h' header file in your source code and call the 'printf' function with the desired format string and arguments.
 
 ## Authors
+
+This project was made by the following contributors:
+
 - Eunice Dunyo ( )
 - Teidor Alafegha-Quakumey (@chlocode)
