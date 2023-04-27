@@ -40,7 +40,10 @@ int _printf(const char *format, ...)
 				case 'i':
 					dv = va_arg(list, int);
 					if (dv < 0)
-						putchar('-'), dv = -dv;
+					{
+						putchar('-');
+						dv = -dv;
+					}
 					if (dv == 0)
 					{
 						putchar('0');
@@ -54,9 +57,9 @@ int _printf(const char *format, ...)
 						l = 1;
 						for (m = 0; m < k; m++)
 							l *= 10;
-					dd = dv / l % 10;
-					putchar('0' + dd);
-					count++;
+						dd = dv / l % 10;
+						putchar('0' + dd);
+						count++;
 					}
 					break;
 				case '%':
