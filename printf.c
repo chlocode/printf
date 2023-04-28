@@ -17,6 +17,7 @@ int _printf(const char *format, ...)
 	va_list list;
 	int i, j, k, cv, dv, temp, dd, nd, l, m, count = 0;
 	char *sv;
+	unsigned int ov, uv;
 
 	va_start(list, format);
 	if (format == NULL || strcmp(format, "%") == 0)
@@ -39,7 +40,6 @@ int _printf(const char *format, ...)
 					break;
 				case 'd':
 				case 'i':
-				case 'u':
 					dv = va_arg(list, int);
 					if (dv < 0)
 					{
@@ -70,11 +70,53 @@ int _printf(const char *format, ...)
 						count++;
 					}
 					break;
+				case 'u':
+					uv = va_arg(list, unsigned int);
+					if (uv == 0)
+					{
+						putchar('0');
+						count++;
+						break;
+					}
+					nd = 0, temp = uv;
+					while (temp != 0)
+						temp /= 10, nd++;
+					for (k = nd - 1; k >= 0; k--)
+					{
+						l = 1;
+						for (m = 0; m < k; m++)
+							l *= 10;
+						dd = uv / l % 10;
+						putchar('0' + dd);
+						count++;
+					}
+					break;
 				case '%':
 					putchar('%'), count++;
 					break;
 					default:
 					putchar('%'), putchar(format[i]), count += 2;
+					break;
+				case 'o':
+					ov = va_arg(list, unsigned int);
+					if (ov == 0)
+					{
+						putchar('0');
+						count++;
+						break;
+					}
+					nd = 0, temp = ov;
+					while (temp != 0)
+						temp /= 8, nd++;
+					for (k = nd -1 ; k >= 0 ; k--)
+					{
+						l = 1;
+						for (m = 0 ; m < k ; m++)
+							l = l * 8;
+						dd = ov / l % 8;
+						putchar('0' + dd);
+						count++;
+					}
 					break;
 			}
 		}
