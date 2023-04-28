@@ -58,7 +58,7 @@ int _printf(const char *format, ...)
 						nd--;
 					}
 					nd = 0, temp = dv;
-					while (temp > 0)
+					while (temp != 0)
 						temp /= 10, nd++;
 					for (k = nd - 1; k >= 0; k--)
 					{
