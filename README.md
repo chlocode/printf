@@ -24,5 +24,5 @@ To use this 'printf' function, simply include the 'main.h' header file in your s
 
 This project was made by the following contributors:
 
-- Eunice Dunyo ( )
+- Eunice Dunyo (@unys98)
 - Teidor Alafegha-Quakumey (@chlocode)
